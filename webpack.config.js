@@ -1,4 +1,5 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const path = require('path');
 
 module.exports = {
@@ -10,14 +11,15 @@ module.exports = {
     filename: 'app.[hash].js',
   },
   resolve: {
-    extensions: ['.js', '.json', '.less', '.css'],
+    extensions: ['.js', '.json', '.scss', '.css'],
     alias: {
       services: path.resolve(__dirname, 'app/services'),
       app: path.resolve(__dirname, 'app/'),
+      ui: path.resolve(__dirname, 'app/base/ui'),
     },
   },
   devServer: {
-    contentBase: './public',
+    contentBase: './app',
     historyApiFallback: true,
     inline: true,
   },
@@ -27,14 +29,42 @@ module.exports = {
       loaders: ['babel-loader'],
       exclude: /node_modules/,
     }, {
-      test: /(\.less|\.css)$/,
+      test: /(\.scss|\.css)$/,
       exclude: /node_modules/,
-      loaders: ['style-loader', 'css-loader', 'less-loader'],
+      loaders: ['style-loader', 'css-loader', {
+        loader: 'sass-loader',
+        options: {
+          sourceMap: true,
+          includePaths: [path.resolve(__dirname, 'app/base/scss/')],
+        },
+      }],
+    }, {
+      test: /\.(png|jpg|gif|svg)$/,
+      loader: 'url-loader',
+      options: {
+        limit: 3000,
+        name: 'public/img/[name].[hash].[ext]',
+      },
     }],
+  },
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          name: 'commons',
+          chunks: 'initial',
+          minChunks: 2,
+        },
+      },
+    },
   },
   plugins: [
     new HtmlWebpackPlugin({
       template: path.join(__dirname, '/app/index.html'),
     }),
+    new CopyWebpackPlugin([{
+      from: './app/public/iconfont.js',
+      to: './public/[name].[ext]',
+    }]),
   ],
 };

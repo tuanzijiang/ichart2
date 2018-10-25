@@ -1,0 +1,10 @@
+@import 'font';
+@import 'color';
+
+
+$base-font: 16;
+
+@function rem($px) {
+  $remSize: $px / $base-font;
+  @return #{$remSize}rem;
+}
