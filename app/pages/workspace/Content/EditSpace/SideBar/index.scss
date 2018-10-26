@@ -1,0 +1,35 @@
+@import 'mixin';
+
+.workspace-sideBarWrapper {
+  height: 100%;
+  display: flex;
+}
+
+.workspace-sideBar {
+  height: 100%;
+  width: rem(64);
+  z-index: 10;
+  background: $black_3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-right: 1px solid $black_2;
+  cursor: pointer;
+}
+
+.workspace-sideItem {
+  padding: rem(15);
+}
+
+.workspace-sideBarPlaceHolder {
+  height: 100%;
+  width: rem(0);
+  z-index: -1;
+  transition: linear all .3s;
+}
+
+.workspace-sideBarWrapper_active {
+  .workspace-sideBarPlaceHolder {
+    width: rem(255);
+  }
+}

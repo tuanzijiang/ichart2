@@ -9,6 +9,7 @@ module.exports = {
         'jsx-a11y/click-events-have-key-events': 'off',
         'import/prefer-default-export': 'off',
         'react/forbid-prop-types': 'off',
+        "react/prefer-stateless-function": "off",
     },
     'plugins': ['import'],
     'settings': {

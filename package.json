@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "webpack-dev-server main.js",
+    "dev": "webpack-dev-server main.js",
     "build": "rm -rf build && webpack",
     "server": "npm run build && node server/index.js"
   },
@@ -21,10 +21,12 @@
   "homepage": "https://github.com/tuanzijiang/ichart2#readme",
   "dependencies": {
     "@babel/core": "^7.1.2",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
     "@babel/preset-env": "^7.1.0",
     "@babel/preset-react": "^7.0.0",
     "babel-eslint": "^10.0.1",
     "babel-loader": "^8.0.4",
+    "classnames": "^2.2.6",
     "copy-webpack-plugin": "^4.5.4",
     "css-loader": "^1.0.0",
     "eslint-import-resolver-webpack": "^0.10.1",

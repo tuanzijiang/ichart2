@@ -1,0 +1,32 @@
+@import 'mixin';
+
+.workspace-header {
+  width: 100%;
+  flex: 0 0 rem(60);
+  background: $black_1;
+  border-bottom: rem(1) solid $black_2;
+  display: flex;
+  align-items: center;
+  cursor: default;
+}
+
+.workspace-logo {
+  font-size: rem(26);
+  color: $blue_1;
+}
+
+.workspace-placeholder {
+  flex: 1 1 auto;
+}
+
+.workspace-avatar {
+  margin: 0 rem(20) 0 0;
+}
+
+.workspace-logo {
+  margin: 0 rem(50) 0 rem(10);
+}
+
+.workspace-icon {
+  margin: 0 0 0 rem(20);
+}

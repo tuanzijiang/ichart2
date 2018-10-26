@@ -1,0 +1,10 @@
+@import 'mixin';
+
+.canvas-main {
+  flex: 1 1 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: $white_1;
+  font-size: rem(60);
+}

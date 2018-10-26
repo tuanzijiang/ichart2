@@ -16,6 +16,8 @@ module.exports = {
       services: path.resolve(__dirname, 'app/services'),
       app: path.resolve(__dirname, 'app/'),
       ui: path.resolve(__dirname, 'app/base/ui'),
+      tools: path.resolve(__dirname, 'app/base/tools'),
+      public: path.resolve(__dirname, 'app/public'),
     },
   },
   devServer: {
@@ -65,6 +67,9 @@ module.exports = {
     new CopyWebpackPlugin([{
       from: './app/public/iconfont.js',
       to: './public/[name].[ext]',
+    }, {
+      from: './app/public/img/*',
+      to: './public/img/[name].[ext]',
     }]),
   ],
 };

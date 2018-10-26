@@ -1,0 +1,1 @@
+export const CONTENT_ADD_GRAPHICS = Symbol('CONTENT_ADD_GRAPHICS');

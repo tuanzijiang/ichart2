@@ -1,0 +1,25 @@
+@import 'mixin';
+
+.sideAreaItem-main {
+  width: rem(180);
+  margin: rem(10) auto;
+}
+
+.sideAreaItem-single {
+  cursor: pointer;
+}
+
+.sideAreaItem-singleImg {
+  width: rem(180);
+  height: rem(120);
+}
+
+.sideAreaItem-singleName {
+  text-align: center;
+  word-break: break-all;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  color: $white_1;
+  line-height: rem(40);
+}

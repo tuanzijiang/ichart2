@@ -1,0 +1,21 @@
+@import 'mixin';
+
+.sideArea-main {
+  position: absolute;
+  z-index: 1;
+  left: rem(64 - 255);
+  width: rem(255);
+  height: 100%;
+  background: $black_3;
+  transition: linear all .3s;
+}
+
+.sideArea-main_active {
+  left: rem(66);
+}
+
+.sideArea-title {
+  width: rem(180);
+  margin: rem(10) auto;
+  height: rem(50);
+}
