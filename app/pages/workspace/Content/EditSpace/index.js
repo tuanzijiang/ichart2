@@ -9,12 +9,12 @@ import './index.scss';
 
 class EditSpace extends PureComponent {
   render() {
-    const { sideArea, sideBarPage } = this.props;
+    const { sideArea, sideBarPage, content } = this.props;
     return (
       <div className="editSpace-main">
         <SideBar sideArea={sideArea} sideBarPage={sideBarPage} />
         <SideArea sideArea={sideArea} sideBarPage={sideBarPage} />
-        <Canvas />
+        <Canvas content={content} />
         <SideMenu />
       </div>
     );
@@ -24,11 +24,13 @@ class EditSpace extends PureComponent {
 EditSpace.propTypes = {
   sideArea: PropTypes.bool.isRequired,
   sideBarPage: PropTypes.number.isRequired,
+  content: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
   sideArea: state.pageState.sideArea,
   sideBarPage: state.pageState.sideBarPage,
+  content: state.content,
 });
 
 export default connect(

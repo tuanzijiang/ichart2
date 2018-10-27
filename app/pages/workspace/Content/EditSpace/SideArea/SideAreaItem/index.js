@@ -6,7 +6,7 @@ import './index.scss';
 export default class SideAreaItem extends PureComponent {
   handleClick(idx) {
     const { content } = this.props;
-    contentInfoService.addGraphics(content.configs[idx]);
+    contentInfoService.addGraphics([content.configs[idx]]);
   }
 
   renderSingleItem() {

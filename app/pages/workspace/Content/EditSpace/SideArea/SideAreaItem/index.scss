@@ -2,7 +2,7 @@
 
 .sideAreaItem-main {
   width: rem(180);
-  margin: rem(10) auto;
+  margin: rem(20) auto;
 }
 
 .sideAreaItem-single {
@@ -12,6 +12,7 @@
 .sideAreaItem-singleImg {
   width: rem(180);
   height: rem(120);
+  margin: 0 0 rem(10);
 }
 
 .sideAreaItem-singleName {
@@ -21,5 +22,5 @@
   text-overflow: ellipsis;
   overflow: hidden;
   color: $white_1;
-  line-height: rem(40);
+  line-height: rem(20);
 }

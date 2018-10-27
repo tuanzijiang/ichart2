@@ -1,5 +1,6 @@
 export default class ContentInfo {
   constructor() {
-    this.items = [];
+    this.items = {};
+    this.keys = [];
   }
 }

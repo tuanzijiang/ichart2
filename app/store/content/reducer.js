@@ -9,7 +9,14 @@ const reducer = (state = new ContentInfo(), action) => {
     case CONTENT_ADD_GRAPHICS:
       return {
         ...state,
-        items: state.items.concat(payload.item),
+        items: {
+          ...state.items,
+          ...payload.keys.reduce((pre, cur, idx) => ({
+            ...pre,
+            [cur]: payload.items[idx],
+          }), {}),
+        },
+        keys: state.keys.concat(payload.keys),
       };
     default:
       return state;

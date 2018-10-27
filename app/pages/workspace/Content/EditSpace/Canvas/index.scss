@@ -3,8 +3,14 @@
 .canvas-main {
   flex: 1 1 auto;
   display: flex;
-  align-items: center;
-  justify-content: center;
   color: $white_1;
   font-size: rem(60);
+  overflow: auto;
+}
+
+.canvas-content {
+  width: rem(510);
+  background: $white_1;
+  min-height: rem(800);
+  margin: rem(30) auto;
 }
