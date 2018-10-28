@@ -10,6 +10,7 @@ module.exports = {
         'import/prefer-default-export': 'off',
         'react/forbid-prop-types': 'off',
         "react/prefer-stateless-function": "off",
+        "no-param-reassign": "off",
     },
     'plugins': ['import'],
     'settings': {

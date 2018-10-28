@@ -38,3 +38,7 @@ export class KeyCreator {
     return currKey;
   }
 }
+
+export const printError = (err) => {
+  console.error(err)// eslint-disable-line
+};

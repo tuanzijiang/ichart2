@@ -1,0 +1,21 @@
+@import 'mixin';
+
+.uploadspace-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.uploadspace-stepWrapper {
+  width: rem(350);
+  height: rem(45);
+  margin: rem(55);
+  color: $white_1;
+}
+
+.uploadspace-fileBox {
+  position: relative;
+  height: rem(250);
+  width: rem(700);
+  border: rem(1) dashed $blue_1;
+}

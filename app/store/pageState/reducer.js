@@ -4,6 +4,8 @@ import {
   WORKSPACE_SIDEBAR_AREA_CHANGE,
   WORKSPACE_SIDEBAR_IDX_CHANGE,
   WORKSPACE_SIDEBAR_IDX_AREA,
+  WORKSPACE_SIDEPAGE_CHANGE,
+  WORKSPACE_SIDEPAGE_NAME,
 } from './action';
 
 const reducer = (state = new PageState(), action) => {
@@ -29,6 +31,17 @@ const reducer = (state = new PageState(), action) => {
         ...state,
         sideBarPage: payload.pageIdx,
         sideArea: payload.areaState,
+      };
+    case WORKSPACE_SIDEPAGE_CHANGE:
+      return {
+        ...state,
+        sidePage: payload.areaState,
+      };
+    case WORKSPACE_SIDEPAGE_NAME:
+      return {
+        ...state,
+        sidePage: payload.areaState,
+        sidePageName: payload.name,
       };
     default:
       return state;

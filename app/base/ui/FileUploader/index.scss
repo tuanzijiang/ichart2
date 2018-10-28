@@ -1,0 +1,13 @@
+@import 'mixin';
+
+.fileuploader-main {
+  height: 100%;
+  width: 100%;
+}
+
+.fileuploader-input {
+  height: 100%;
+  width: 100%;
+  outline: none;
+  opacity: 0;
+}

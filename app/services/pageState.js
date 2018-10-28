@@ -3,6 +3,8 @@ import {
   WORKSPACE_PAGE_CHANGE,
   WORKSPACE_SIDEBAR_AREA_CHANGE,
   WORKSPACE_SIDEBAR_IDX_AREA,
+  WORKSPACE_SIDEPAGE_CHANGE,
+  WORKSPACE_SIDEPAGE_NAME,
 } from 'app/store/pageState/action';
 
 const workspacePageChange = (pageIdx) => {
@@ -33,8 +35,30 @@ const workspaceSideBarIdxAndArea = (areaState, pageIdx) => {
   });
 };
 
+const workspaceSidePageAndName = (areaState, name) => {
+  store.dispatch({
+    type: WORKSPACE_SIDEPAGE_NAME,
+    payload: {
+      areaState,
+      name,
+    },
+  });
+};
+
+const workspaceSidePageChange = (areaState) => {
+  store.dispatch({
+    type: WORKSPACE_SIDEPAGE_CHANGE,
+    payload: {
+      areaState,
+    },
+  });
+};
+
+
 export default {
   workspacePageChange,
   workspaceSideBarArea,
   workspaceSideBarIdxAndArea,
+  workspaceSidePageChange,
+  workspaceSidePageAndName,
 };
