@@ -16,7 +16,7 @@ export const rem = px => `${px / BASE_FONT}rem`;
 export const color = col => COLOE_SWITCH[col];
 
 const obtain = (num, prefix) => (
-  `${prefix || ''}${[...Array(num || 10).keys()].reduce(pre => (
+  `${prefix || ''}_${[...Array(num || 10).keys()].reduce(pre => (
     `${pre}${Math.floor(Math.random() * 10)}`
   ), '')}`
 );

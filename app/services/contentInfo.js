@@ -1,10 +1,9 @@
 import store from 'app/store';
 import { CONTENT_ADD_GRAPHICS } from 'app/store/content/action';
 import { KeyCreator, rem } from 'tools';
+import { GRAPHIC_PREFIX } from 'constants';
 
 const keyCreator = new KeyCreator();
-
-export const GRAPHIC_PREFIX = 'graphic_';
 
 export const size = {
   [GRAPHIC_PREFIX]: {

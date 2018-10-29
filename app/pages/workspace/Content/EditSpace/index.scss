@@ -5,3 +5,15 @@
   width: 100%;
   height: 100%;
 }
+
+.editSpace-sideMenuPlaceHolder {
+  width: 0;
+  height: 100%;
+  background: $black_3;
+  border-left: rem(1) solid $black_2;
+  transition: linear all .3s;
+}
+
+.editSpace-sideMenuPlaceHolder_active {
+  width: rem(255);
+}

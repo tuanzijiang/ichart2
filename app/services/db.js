@@ -4,6 +4,34 @@ const databaseName = 'excel';
 const objectStoreName = 'sheet';
 const version = 2;
 const MAX_NUM = 5;
+const SEPARATOR = '*';
+
+export const DATA_HANDLER_SUM = Symbol('DATA_HANDLER_SUM');
+export const DATA_HANDLER_AVE = Symbol('DATA_HANDLER_AVE');
+
+const getNextItem = (typeItem, currY, type) => {
+  switch (type) {
+    case DATA_HANDLER_SUM: {
+      const currGroupNum = typeItem.num || 0;
+      const currGroupVal = typeItem.val || 0;
+      return {
+        num: currGroupNum + 1,
+        val: currGroupVal + currY,
+      };
+    }
+    case DATA_HANDLER_AVE: {
+      const currGroupNum = typeItem.num || 0;
+      const currGroupVal = typeItem.val || 0;
+      return {
+        num: currGroupNum + 1,
+        val: (currGroupVal * currGroupNum + currY) / (currGroupNum + 1),
+      };
+    }
+    default:
+      break;
+  }
+  return null;
+};
 
 const obtainArr = [];
 
@@ -74,6 +102,8 @@ const getObjsMeta = (objs) => {
   };
 };
 
+open();
+
 export const clear = () => {
   open();
   const transaction = db.transaction([objectStoreName], 'readwrite');
@@ -82,7 +112,6 @@ export const clear = () => {
   objectStore.clear();
 };
 
-open();
 
 export const close = () => {
   db.close();
@@ -125,4 +154,63 @@ export const obtain = (cb) => {
       cb(obtainArr);
     }
   };
+};
+
+export const getDisplayData = ({ x, y }, cb) => {
+  if (Object.prototype.toString.call(x) === '[object Array]' && x.length !== 0) {
+    const typeXIdx = x.pop();
+    const transaction = db.transaction([objectStoreName], 'readwrite');
+    const objectStore = transaction.objectStore(objectStoreName);
+
+    const originData = {};
+
+    objectStore.openCursor().onsuccess = (e) => {
+      const cursor = e.target.result;
+      if (cursor) {
+        const { key } = cursor;
+        const val = cursor.value;
+
+        if (Object.prototype.toString.call(key) === '[object Number]') {
+          const typeX = val[typeXIdx];
+          let groupX = x.map(idx => val[idx]).join(SEPARATOR);
+          groupX = groupX.length ? groupX : typeX;
+          const currY = val[y];
+
+          const currGroup = originData[groupX] || {};
+          const typeItem = currGroup[typeX] || {};
+
+          const nextItem = getNextItem(typeItem, currY, DATA_HANDLER_AVE);
+
+          currGroup[typeX] = nextItem;
+          originData[groupX] = currGroup;
+        }
+
+        cursor.continue();
+      } else if (Object.prototype.toString.call(cb) === '[object Function]') {
+        cb();
+      } else {
+        console.warn(2222, originData);
+
+        const subKeys = Object.keys(originData);
+        const mainKeys = subKeys.reduce((prev, curr) => (
+          prev.concat(Object.keys(originData[curr]).filter(v => !prev.includes(v)))
+        ), []);
+
+        console.warn(3333, subKeys, mainKeys);
+
+        const dispalyData = mainKeys.reduce((prev, mainKey) => (
+          prev.concat([
+            {
+              type: mainKey,
+              val: subKeys.reduce((pre, subKey) => (
+                pre.concat(((originData[subKey] || {})[mainKey] || {}).val || 0)
+              ), []),
+            },
+          ])
+        ), []);
+
+        console.warn(4444, dispalyData);
+      }
+    };
+  }
 };

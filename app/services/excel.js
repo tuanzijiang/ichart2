@@ -1,5 +1,5 @@
 import XLSX from 'xlsx';
-import { add } from './db';
+import { add, getDisplayData } from './db';
 
 const weight = '-ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -58,7 +58,7 @@ const createObjs = (sheet) => {
         validNum += 1;
       }
     }
-    currObj.key = i;
+    currObj.key = i === XStart ? 'title' : i;
     if (validNum) {
       objs.push(currObj);
     }
@@ -79,7 +79,8 @@ const read = (file) => {
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
       const objs = createObjs(sheet);
-      add(objs);
+      // add(objs);
+      getDisplayData({ x: [11, 10], y: 2 }, null);
     };
     if (rABS) {
       reader.readAsBinaryString(file);

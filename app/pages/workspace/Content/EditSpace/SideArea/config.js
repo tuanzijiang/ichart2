@@ -1,6 +1,5 @@
+import { TYPE_GRAPHICS } from 'constants';
 import column1 from './examples/column-default1';
-
-const TYPE_GRAPHICS = Symbol('TYPE_GRAPHICS');
 
 export default [
   {

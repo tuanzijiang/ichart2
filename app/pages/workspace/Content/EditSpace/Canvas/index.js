@@ -2,7 +2,9 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import { size } from 'services/contentInfo';
+import pageStateService from 'services/pageState';
 import './index.scss';
+
 
 const diff = (oldIds, newIds) => {
   const addIds = newIds.reduce((prev, curr) => (
@@ -56,12 +58,15 @@ export default class Canvas extends PureComponent {
   createAddDOMs(addIds, afterAddIds) {
     addIds.forEach((addId) => {
       const prefix = addId.split('_')[0];
-      const { width, height } = size[`${prefix}_`];
+      const { width, height } = size[prefix];
       const afterId = afterAddIds[addId];
       const hostDOM = document.createElement('div');
       hostDOM.style.height = height;
       hostDOM.style.width = width;
       hostDOM.id = addId;
+      hostDOM.onclick = () => {
+        pageStateService.workspaceCurrItemKeyChange(addId);
+      };
       this.hostDOMs[addId] = hostDOM;
       if (afterId) {
         const afterDOM = this.hostDOMs[afterId];

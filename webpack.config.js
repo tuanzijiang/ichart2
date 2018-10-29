@@ -18,6 +18,7 @@ module.exports = {
       ui: path.resolve(__dirname, 'app/base/ui'),
       tools: path.resolve(__dirname, 'app/base/tools'),
       public: path.resolve(__dirname, 'app/public'),
+      constants: path.resolve(__dirname, 'app/base/constants'),
     },
   },
   devServer: {
