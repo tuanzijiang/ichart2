@@ -150,8 +150,20 @@ export const obtain = (cb) => {
         val: cursor.value,
       });
       cursor.continue();
-    } else {
+    } else if (Object.prototype.toString.apply(cb, this) === '[object Function]') {
       cb(obtainArr);
+    }
+  };
+};
+
+export const obtainByKey = (key, cb) => {
+  const transaction = db.transaction([objectStoreName], 'readwrite');
+  const objectStore = transaction.objectStore(objectStoreName);
+
+  objectStore.get(key).onsuccess = (e) => {
+    const cursor = e.target.result;
+    if (Object.prototype.toString.apply(cb, this) === '[object Function]') {
+      cb(cursor);
     }
   };
 };
@@ -187,18 +199,12 @@ export const getDisplayData = ({ x, y }, cb) => {
 
         cursor.continue();
       } else if (Object.prototype.toString.call(cb) === '[object Function]') {
-        cb();
-      } else {
-        console.warn(2222, originData);
-
         const subKeys = Object.keys(originData);
         const mainKeys = subKeys.reduce((prev, curr) => (
           prev.concat(Object.keys(originData[curr]).filter(v => !prev.includes(v)))
         ), []);
 
-        console.warn(3333, subKeys, mainKeys);
-
-        const dispalyData = mainKeys.reduce((prev, mainKey) => (
+        let displayData = mainKeys.reduce((prev, mainKey) => (
           prev.concat([
             {
               type: mainKey,
@@ -209,7 +215,13 @@ export const getDisplayData = ({ x, y }, cb) => {
           ])
         ), []);
 
-        console.warn(4444, dispalyData);
+        if (x.length === 0) {
+          displayData = displayData.map((displayObj, displayIdx) => ({
+            type: displayObj.type,
+            val: displayObj.val[displayIdx],
+          }));
+        }
+        cb(displayData, subKeys);
       }
     };
   }

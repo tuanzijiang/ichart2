@@ -8,6 +8,7 @@ import {
   WORKSPACE_SIDEPAGE_NAME,
   WORKSPACE_CURRENT_ITEM_KEY,
   WORKSPACE_SIDEMENU_PAGEIDX,
+  WORKSPACE_UPDATE_DRAGINFO,
 } from './action';
 
 const reducer = (state = new PageState(), action) => {
@@ -54,6 +55,14 @@ const reducer = (state = new PageState(), action) => {
       return {
         ...state,
         sideMenuPageIdx: payload.pageIdx,
+      };
+    case WORKSPACE_UPDATE_DRAGINFO:
+      return {
+        ...state,
+        dragInfo: {
+          ...state.dragInfo,
+          ...payload.dragInfo,
+        },
       };
     default:
       return state;

@@ -7,7 +7,14 @@ import {
   WORKSPACE_SIDEPAGE_NAME,
   WORKSPACE_CURRENT_ITEM_KEY,
   WORKSPACE_SIDEMENU_PAGEIDX,
+  WORKSPACE_UPDATE_DRAGINFO,
 } from 'app/store/pageState/action';
+
+export const DRAG_POSITION = {
+  ALL_ATTRS: Symbol('ALL_ATTRS'),
+  X_ATTRS: Symbol('X_ATTRS'),
+  Y_ATTRS: Symbol('Y_ATTRS'),
+};
 
 const workspacePageChange = (pageIdx) => {
   store.dispatch({
@@ -74,6 +81,15 @@ const workspaceSideMenuPageIdx = (pageIdx) => {
   });
 };
 
+const workspaceUpdateDragInfo = (dragInfo) => {
+  store.dispatch({
+    type: WORKSPACE_UPDATE_DRAGINFO,
+    payload: {
+      dragInfo,
+    },
+  });
+};
+
 
 export default {
   workspacePageChange,
@@ -83,4 +99,5 @@ export default {
   workspaceSidePageAndName,
   workspaceCurrItemKeyChange,
   workspaceSideMenuPageIdx,
+  workspaceUpdateDragInfo,
 };

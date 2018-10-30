@@ -9,5 +9,6 @@ export default class PageState {
     this.uploadStepIdx = 0;
     this.currItemKey = '';
     this.sideMenuPageIdx = 0;
+    this.dragInfo = {};
   }
 }

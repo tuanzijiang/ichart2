@@ -23,6 +23,8 @@ export default class SideArea extends PureComponent {
             fontSize={rem(16)}
             texts={[config.name]}
           />
+        </div>
+        <div className="sideArea-list">
           {
             config.contents && config.contents.map(content => (
               <SideAreaItem content={content} key={content.name} />

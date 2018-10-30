@@ -1,5 +1,5 @@
 import XLSX from 'xlsx';
-import { add, getDisplayData } from './db';
+import { add } from './db';
 
 const weight = '-ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split('');
 
@@ -79,8 +79,7 @@ const read = (file) => {
       const sheetName = workbook.SheetNames[0];
       const sheet = workbook.Sheets[sheetName];
       const objs = createObjs(sheet);
-      // add(objs);
-      getDisplayData({ x: [11, 10], y: 2 }, null);
+      add(objs);
     };
     if (rABS) {
       reader.readAsBinaryString(file);

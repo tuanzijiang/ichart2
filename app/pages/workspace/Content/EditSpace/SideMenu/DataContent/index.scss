@@ -1,0 +1,27 @@
+@import 'mixin';
+
+.dataContent-main {
+  flex: 1 1 0;
+  width: 100%;
+  font-size: rem(14);
+  color: $white_1;
+}
+
+.dataContent-title {
+  overflow: hidden;
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+  width: rem(225);
+  margin: rem(20) auto rem(10);
+}
+
+.dataContent-box {
+  line-height: 1;
+  width: rem(223);
+  border: rem(1) solid $white_1;
+  overflow: auto;
+  height: rem(120);
+  margin: 0 auto;
+}

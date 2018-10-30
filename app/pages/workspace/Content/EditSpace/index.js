@@ -22,9 +22,9 @@ class EditSpace extends PureComponent {
       <div className="editSpace-main">
         <SideBar sideArea={sideArea} sideBarPage={sideBarPage} />
         <SideArea sideArea={sideArea} sideBarPage={sideBarPage} />
-        <Canvas content={content} />
+        <Canvas content={content} currItemKey={currItemKey} />
         <div className={sideMenuPlaceHolderClass} />
-        <SideMenu currItemKey={currItemKey} sideMenuPageIdx={sideMenuPageIdx} />
+        <SideMenu currItemKey={currItemKey} sideMenuPageIdx={sideMenuPageIdx} content={content} />
       </div>
     );
   }

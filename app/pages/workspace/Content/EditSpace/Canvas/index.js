@@ -1,8 +1,11 @@
 /* global echarts */
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { size } from 'services/contentInfo';
+import contentInfoService, { size } from 'services/contentInfo';
+import { shouldMerge } from 'tools';
 import pageStateService from 'services/pageState';
+import { getDisplayData } from 'services/db';
+import { createSeries } from 'services/echarts';
 import './index.scss';
 
 
@@ -30,6 +33,7 @@ export default class Canvas extends PureComponent {
     this.handlers = {};
     this.hostDOMs = {};
     this.currKey = '';
+    this.updateEcharts = this.updateEcharts.bind(this);
   }
 
   componentDidMount() {
@@ -102,7 +106,39 @@ export default class Canvas extends PureComponent {
     });
   }
 
+  updateEcharts() {
+    const { content, currItemKey } = this.props;
+    const { attrs, items } = content;
+    const currDataConfig = content.dataConfigs[currItemKey];
+    const defaultConfig = ((content.dataConfigs || {}).items || {})[currItemKey] || {};
+
+    if (currDataConfig) {
+      const currHandler = this.handlers[currItemKey];
+      const { x, y } = currDataConfig;
+      const dbX = x.map(xItem => (parseInt(xItem, 10) - 1));
+      const dbY = y.map(yItem => (parseInt(yItem, 10) - 1));
+      dbY.forEach((yItem) => {
+        getDisplayData({
+          x: dbX,
+          y: yItem,
+        }, (data, subKeys) => {
+          const updateItem = {
+            series: createSeries(data, attrs[yItem], defaultConfig),
+            xAxis: {
+              data: subKeys,
+            },
+          };
+          currHandler.setOption(updateItem);
+          if (shouldMerge(items[currItemKey], updateItem)) {
+            contentInfoService.updateEchartsItem(currItemKey, updateItem);
+          }
+        });
+      });
+    }
+  }
+
   render() {
+    this.updateEcharts();
     return (
       <div className="canvas-main">
         <div className="canvas-content" />
@@ -113,4 +149,5 @@ export default class Canvas extends PureComponent {
 
 Canvas.propTypes = {
   content: PropTypes.object.isRequired,
+  currItemKey: PropTypes.string.isRequired,
 };

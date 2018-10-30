@@ -1,0 +1,26 @@
+@import 'mixin';
+
+.dragableItem-main {
+  display: flex;
+  align-items: center;
+  transition: all .3s;
+  background: transparent;
+}
+
+.dragableItem-main:hover {
+  user-select: none;
+  background: $black_1;
+}
+
+.dragableItem-main_move:hover {
+  cursor: move;
+}
+
+.dragableItem-text {
+  margin: 0 0 0 rem(10);
+  overflow: hidden;
+  width: rem(180);
+  text-overflow: ellipsis;
+  word-break: break-all;
+  white-space: nowrap;
+}

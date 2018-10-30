@@ -56,7 +56,7 @@ export default class SliderButton extends PureComponent {
       <div
         className={classname}
         style={{
-          height, width, color, fontSize,
+          height, width, color, fontSize, minHeight: height,
         }}
       >
         {texts.map((text, idx) => (

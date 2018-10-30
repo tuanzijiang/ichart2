@@ -3,6 +3,8 @@
 .workspace-sideBarWrapper {
   height: 100%;
   display: flex;
+  overflow: auto;
+  min-height: rem(320);
 }
 
 .workspace-sideBar {

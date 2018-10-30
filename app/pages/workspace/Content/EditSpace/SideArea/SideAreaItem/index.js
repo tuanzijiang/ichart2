@@ -4,15 +4,15 @@ import contentInfoService from 'services/contentInfo';
 import './index.scss';
 
 export default class SideAreaItem extends PureComponent {
-  handleClick(idx) {
+  handleClick() {
     const { content } = this.props;
-    contentInfoService.addGraphics([content.configs[idx]]);
+    contentInfoService.addGraphics([content.configs], [content.dataConfig], [content.defaultType]);
   }
 
   renderSingleItem() {
     const { content } = this.props;
     return (
-      <div className="sideAreaItem-single" onClick={this.handleClick.bind(this, 0)}>
+      <div className="sideAreaItem-single" onClick={this.handleClick.bind(this)}>
         <div className="sideAreaItem-singleImg">
           <img src={content.imgs[0]} alt={content.name} />
         </div>
@@ -26,7 +26,7 @@ export default class SideAreaItem extends PureComponent {
   renderMulItem() {
     const { content } = this.props;
     return (
-      <div className="sideAreaItem-single" onClick={this.handleClick.bind(this, 0)}>
+      <div className="sideAreaItem-single" onClick={this.handleClick.bind(this)}>
         <div className="sideAreaItem-singleImg">
           <img src={content.imgs[0]} alt={content.name} />
         </div>
