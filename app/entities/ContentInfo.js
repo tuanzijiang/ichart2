@@ -4,5 +4,6 @@ export default class ContentInfo {
     this.dataConfigs = {};
     this.keys = [];
     this.attrs = [];
+    this.attrTypes = [];
   }
 }

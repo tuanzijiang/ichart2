@@ -7,6 +7,9 @@ html, body {
   font-size: #{$base-font}px;
   height: 100%;
   width: 100%;
+}
+
+html {
   overflow: hidden;
 }
 
@@ -23,6 +26,7 @@ img {
   height: 100%;
   width: 100%;
   min-width: rem(1200);
+  min-height: rem(600);
 }
 
 .icon {

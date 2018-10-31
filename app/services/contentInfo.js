@@ -2,6 +2,7 @@ import store from 'app/store';
 import {
   CONTENT_ADD_GRAPHICS,
   UPDATE_ATTRS,
+  UPDATE_ATTRTYPES,
   UPDATE_X,
   UPDATE_Y,
   UPDATE_ITEM,
@@ -40,6 +41,15 @@ const updateAttrs = (attrs) => {
   });
 };
 
+const updateAttrTypes = (attrTypes) => {
+  store.dispatch({
+    type: UPDATE_ATTRTYPES,
+    payload: {
+      attrTypes,
+    },
+  });
+};
+
 const updateX = (itemKey, xVal) => {
   store.dispatch({
     type: UPDATE_X,
@@ -71,7 +81,6 @@ const updateItem = (itemKey, item) => {
 };
 
 const updateEchartsItem = (itemKey, item) => {
-  console.warn(3333, itemKey, item);
   store.dispatch({
     type: UPDATE_ECHART_ITEM,
     payload: {
@@ -84,6 +93,7 @@ const updateEchartsItem = (itemKey, item) => {
 export default {
   addGraphics,
   updateAttrs,
+  updateAttrTypes,
   updateX,
   updateY,
   updateItem,

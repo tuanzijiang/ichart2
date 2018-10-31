@@ -10,11 +10,12 @@ import {
   WORKSPACE_UPDATE_DRAGINFO,
 } from 'app/store/pageState/action';
 
-export const DRAG_POSITION = {
-  ALL_ATTRS: Symbol('ALL_ATTRS'),
-  X_ATTRS: Symbol('X_ATTRS'),
-  Y_ATTRS: Symbol('Y_ATTRS'),
-};
+export const DRAG_POSITION = [
+  '',
+  'ALL_ATTRS',
+  'X_ATTRS',
+  'Y_ATTRS',
+];
 
 const workspacePageChange = (pageIdx) => {
   store.dispatch({

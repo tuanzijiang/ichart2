@@ -6,6 +6,7 @@ import {
   UPDATE_Y,
   UPDATE_ITEM,
   UPDATE_ECHART_ITEM,
+  UPDATE_ATTRTYPES,
 } from './action';
 
 const reducer = (state = new ContentInfo(), action) => {
@@ -80,7 +81,6 @@ const reducer = (state = new ContentInfo(), action) => {
         },
       };
     case UPDATE_ECHART_ITEM:
-      console.warn(8989, payload);
       return {
         ...state,
         items: {
@@ -89,6 +89,11 @@ const reducer = (state = new ContentInfo(), action) => {
             ...payload.item,
           },
         },
+      };
+    case UPDATE_ATTRTYPES:
+      return {
+        ...state,
+        attrTypes: payload.attrTypes,
       };
     default:
       return state;

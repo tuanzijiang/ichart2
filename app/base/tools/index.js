@@ -9,6 +9,9 @@ export const COLOE_SWITCH = {
 
   /* Blue */
   $blue_1: '#5aa7ef',
+
+  /* Red */
+  $red_1: '#ed6c5f',
 };
 
 export const rem = px => `${px / BASE_FONT}rem`;

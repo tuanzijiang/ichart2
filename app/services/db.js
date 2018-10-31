@@ -168,7 +168,8 @@ export const obtainByKey = (key, cb) => {
   };
 };
 
-export const getDisplayData = ({ x, y }, cb) => {
+export const getDisplayData = ({ x: originX, y }, cb) => {
+  const x = [].concat(originX);
   if (Object.prototype.toString.call(x) === '[object Array]' && x.length !== 0) {
     const typeXIdx = x.pop();
     const transaction = db.transaction([objectStoreName], 'readwrite');

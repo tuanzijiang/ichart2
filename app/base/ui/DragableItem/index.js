@@ -1,44 +1,46 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import classnames from 'classnames';
-import { rem } from 'tools';
+import pageStateService, { DRAG_POSITION } from 'services/pageState';
 import './index.scss';
 
 export default class DragableItem extends PureComponent {
   render() {
     const {
-      text, height, width, draggable, handleDrag,
+      draggable, onDragStart, children, id, dragPosition, dragMergeProps,
     } = this.props;
-    const dragableItemMainClass = classnames({
-      'dragableItem-main': true,
-      'dragableItem-main_move': draggable,
-    });
     return (
       <div
-        className={dragableItemMainClass}
-        style={{ height, width }}
         draggable={draggable}
-        onDragStart={handleDrag}
-        id={text}
+        onDragStart={(ev) => {
+          const mergeObj = {
+            fromPosition: DRAG_POSITION[dragPosition],
+          };
+          pageStateService.workspaceUpdateDragInfo(mergeObj);
+          onDragStart(ev);
+        }}
+        id={id}
+        {...dragMergeProps}
       >
-        <div className="dragableItem-text">{text}</div>
+        {children}
       </div>
     );
   }
 }
 
 DragableItem.propTypes = {
-  text: PropTypes.string,
-  height: PropTypes.string,
-  width: PropTypes.string,
+  children: PropTypes.any,
   draggable: PropTypes.bool,
-  handleDrag: PropTypes.func,
+  onDragStart: PropTypes.func,
+  dragPosition: PropTypes.number,
+  id: PropTypes.string,
+  dragMergeProps: PropTypes.object,
 };
 
 DragableItem.defaultProps = {
-  text: '',
-  height: rem(30),
-  width: '100%',
+  children: '',
+  id: '',
   draggable: true,
-  handleDrag: () => { },
+  onDragStart: () => { },
+  dragPosition: 0,
+  dragMergeProps: {},
 };

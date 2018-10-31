@@ -10,8 +10,10 @@ import './index.scss';
 
 export default class SideMenu extends PureComponent {
   render() {
-    const { currItemKey, sideMenuPageIdx, content } = this.props;
-    const { dataConfigs, attrs } = content;
+    const {
+      currItemKey, sideMenuPageIdx, content, dragInfo,
+    } = this.props;
+    const { dataConfigs, attrs, attrTypes } = content;
     const sideMenuClass = classnames({
       'sideMenu-main': true,
       'sideMenu-main_active': currItemKey.length,
@@ -41,7 +43,13 @@ export default class SideMenu extends PureComponent {
         {
           currItemConfig && sideMenuPageIdx === 0
           && (
-            <DataContent dataConfigs={dataConfigs} currItemKey={currItemKey} attrs={attrs} />
+            <DataContent
+              dataConfigs={dataConfigs}
+              currItemKey={currItemKey}
+              attrs={attrs}
+              attrTypes={attrTypes}
+              dragInfo={dragInfo}
+            />
           )
         }
         {
@@ -59,4 +67,5 @@ SideMenu.propTypes = {
   currItemKey: PropTypes.string.isRequired,
   sideMenuPageIdx: PropTypes.number.isRequired,
   content: PropTypes.object.isRequired,
+  dragInfo: PropTypes.object.isRequired,
 };

@@ -47,6 +47,7 @@ const createObjs = (sheet) => {
     XStart, XEnd, YStart, YEnd,
   } = getRange(sheet['!ref']);
   const objs = [];
+  const types = [];
   for (let i = XStart; i <= XEnd; i += 1) {
     const currObj = [];
     let validNum = 0;
@@ -57,12 +58,17 @@ const createObjs = (sheet) => {
       if (currObj[j] !== undefined && currObj[j] !== null) {
         validNum += 1;
       }
+      if (i <= XStart + 1) {
+        types[j] = (currCelVal || {}).t || 's';
+      }
     }
     currObj.key = i === XStart ? 'title' : i;
     if (validNum) {
       objs.push(currObj);
     }
   }
+  types.key = 'dataType';
+  objs.push(types);
   return objs;
 };
 

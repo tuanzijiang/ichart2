@@ -11,7 +11,7 @@ import './index.scss';
 class EditSpace extends PureComponent {
   render() {
     const {
-      sideArea, sideBarPage, content, currItemKey, sideMenuPageIdx,
+      sideArea, sideBarPage, content, currItemKey, sideMenuPageIdx, dragInfo,
     } = this.props;
     const sideMenuPlaceHolderClass = classnames({
       'editSpace-sideMenuPlaceHolder': true,
@@ -24,7 +24,12 @@ class EditSpace extends PureComponent {
         <SideArea sideArea={sideArea} sideBarPage={sideBarPage} />
         <Canvas content={content} currItemKey={currItemKey} />
         <div className={sideMenuPlaceHolderClass} />
-        <SideMenu currItemKey={currItemKey} sideMenuPageIdx={sideMenuPageIdx} content={content} />
+        <SideMenu
+          currItemKey={currItemKey}
+          sideMenuPageIdx={sideMenuPageIdx}
+          content={content}
+          dragInfo={dragInfo}
+        />
       </div>
     );
   }
@@ -36,6 +41,7 @@ EditSpace.propTypes = {
   content: PropTypes.object.isRequired,
   currItemKey: PropTypes.string.isRequired,
   sideMenuPageIdx: PropTypes.number.isRequired,
+  dragInfo: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -44,6 +50,7 @@ const mapStateToProps = state => ({
   content: state.content,
   currItemKey: state.pageState.currItemKey,
   sideMenuPageIdx: state.pageState.sideMenuPageIdx,
+  dragInfo: state.pageState.dragInfo,
 });
 
 export default connect(

@@ -5,6 +5,17 @@
   width: 100%;
   font-size: rem(14);
   color: $white_1;
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  flex-direction: column;
+}
+
+.dataContent-itemAll {
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .dataContent-title {
@@ -13,15 +24,50 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   word-break: break-all;
+  height: rem(20);
   width: rem(225);
   margin: rem(20) auto rem(10);
 }
 
 .dataContent-box {
+  position: relative;
   line-height: 1;
   width: rem(223);
   border: rem(1) solid $white_1;
   overflow: auto;
-  height: rem(120);
+  height: 100%;
   margin: 0 auto;
+}
+
+.dataContent-boxWrapper {
+  position: relative;
+  flex: 1 1 0;
+}
+
+.dataContent-mask {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 10;
+}
+
+.dataContent-itemDelete {
+  position: relative;
+}
+
+.dataContent-delete {
+  height: rem(35);
+  width: rem(35);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: rem(1) solid $white_1;
+  overflow: hidden;
+  border-radius: 50%;
+  margin: rem(20) 0 rem(10);
+}
+
+.dataContent-delete_active {
+  background: $red_1;
+  border: rem(1) solid $red_1;
 }

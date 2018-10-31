@@ -1,8 +1,10 @@
 import { TYPE_GRAPHICS } from 'constants';
 import column1 from './examples/column-default1';
+import line1 from './examples/line-default1';
 
 const defaultTypes = [
   'bar',
+  'line',
 ];
 
 export default [
@@ -31,9 +33,9 @@ export default [
         showName: true,
         number: 1,
         configs: {
-          ...column1,
+          ...line1,
         },
-        defaultType: defaultTypes[0],
+        defaultType: defaultTypes[1],
         dataConfig: {
           x: [],
           y: [],
