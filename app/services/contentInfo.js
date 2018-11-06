@@ -7,6 +7,7 @@ import {
   UPDATE_Y,
   UPDATE_ITEM,
   UPDATE_ECHART_ITEM,
+  UPDATE_KEYS,
 } from 'app/store/content/action';
 import { KeyCreator, rem } from 'tools';
 import { GRAPHIC_PREFIX } from 'constants';
@@ -90,6 +91,15 @@ const updateEchartsItem = (itemKey, item) => {
   });
 };
 
+const updateKeys = (keys) => {
+  store.dispatch({
+    type: UPDATE_KEYS,
+    payload: {
+      keys,
+    },
+  });
+};
+
 export default {
   addGraphics,
   updateAttrs,
@@ -98,4 +108,5 @@ export default {
   updateY,
   updateItem,
   updateEchartsItem,
+  updateKeys,
 };

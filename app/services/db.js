@@ -2,7 +2,7 @@ import { printError } from 'tools';
 
 const databaseName = 'excel';
 const objectStoreName = 'sheet';
-const version = 2;
+const version = 3;
 const MAX_NUM = 5;
 const SEPARATOR = '*';
 
@@ -48,7 +48,9 @@ const open = () => {
 
     request.onupgradeneeded = (e) => {
       db = e.target.result;
-      db.deleteObjectStore(objectStoreName);
+      if (db.objectStoreNames.contains(objectStoreName)) {
+        db.deleteObjectStore(objectStoreName);
+      }
       db.createObjectStore(objectStoreName, { keyPath: 'key', autoIncrement: false });
     };
 
@@ -222,7 +224,7 @@ export const getDisplayData = ({ x: originX, y }, cb) => {
             val: displayObj.val[displayIdx],
           }));
         }
-        cb(displayData, subKeys);
+        cb(displayData, subKeys, mainKeys);
       }
     };
   }

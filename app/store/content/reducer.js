@@ -7,6 +7,7 @@ import {
   UPDATE_ITEM,
   UPDATE_ECHART_ITEM,
   UPDATE_ATTRTYPES,
+  UPDATE_KEYS,
 } from './action';
 
 const reducer = (state = new ContentInfo(), action) => {
@@ -94,6 +95,11 @@ const reducer = (state = new ContentInfo(), action) => {
       return {
         ...state,
         attrTypes: payload.attrTypes,
+      };
+    case UPDATE_KEYS:
+      return {
+        ...state,
+        keys: payload.keys,
       };
     default:
       return state;

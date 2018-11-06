@@ -15,6 +15,7 @@ export const DRAG_POSITION = [
   'ALL_ATTRS',
   'X_ATTRS',
   'Y_ATTRS',
+  'CANVAS',
 ];
 
 const workspacePageChange = (pageIdx) => {

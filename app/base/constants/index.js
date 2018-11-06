@@ -4,3 +4,10 @@ export const GRAPHIC_PREFIX = 'graphic';
 export const prefixMap = {
   GRAPHIC_PREFIX: TYPE_GRAPHICS,
 };
+
+export const defaultTypes = [
+  'bar',
+  'line',
+  'pie',
+  'radar',
+];

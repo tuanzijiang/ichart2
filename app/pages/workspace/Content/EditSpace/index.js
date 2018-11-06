@@ -22,7 +22,7 @@ class EditSpace extends PureComponent {
       <div className="editSpace-main">
         <SideBar sideArea={sideArea} sideBarPage={sideBarPage} />
         <SideArea sideArea={sideArea} sideBarPage={sideBarPage} />
-        <Canvas content={content} currItemKey={currItemKey} />
+        <Canvas content={content} currItemKey={currItemKey} dragInfo={dragInfo} />
         <div className={sideMenuPlaceHolderClass} />
         <SideMenu
           currItemKey={currItemKey}
